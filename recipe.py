@@ -1,4 +1,4 @@
-# pylint: disable=missing-docstring, line-too-long, missing-timeout
+# pylint: disable=missing-docstring, line-too-long
 import sys
 from os import path
 import csv
