@@ -1,14 +1,12 @@
 # pylint: disable=missing-docstring, line-too-long
 import sys
 from os import path
-# $DELETE_BEGIN
 import csv
 import requests
 from bs4 import BeautifulSoup
 
 SEARCH_URL = "https://recipes.lewagon.com/"
 PAGES_TO_SCRAPE = 3
-# $DELETE_END
 
 def parse(html):
     ''' return a list of dict {name, difficulty, prep_time} '''
@@ -30,13 +28,11 @@ def parse_recipe(article):
 
 def write_csv(ingredient, recipes):
     ''' dump recipes to a CSV file `recipes/INGREDIENT.csv` '''
-    # $CHALLENGIFY_BEGIN
     with open(f'recipes/{ingredient}.csv', 'w', encoding='utf-8') as recipe_file:
         keys = recipes[0].keys()
         writer = csv.DictWriter(recipe_file, fieldnames=keys)
         writer.writeheader()
         writer.writerows(recipes)
-    # $CHALLENGIFY_END
 
 def scrape_from_internet(ingredient, start=1):
     ''' Use `requests` to get the HTML page of search results for given ingredients. '''
@@ -71,8 +67,7 @@ def main():
     if len(sys.argv) > 1:
         ingredient = sys.argv[1]
 
-        # TODO: Replace scrape_from_file with scrape_from_internet and implement pagination (more than 2 pages needed)
-        recipes = parse(scrape_from_file(ingredient))
+        recipes = parse(scrape_from_internet(ingredient))
 
         # $CHALLENGIFY_BEGIN
         recipes = []
