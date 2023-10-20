@@ -1,6 +1,7 @@
 # pylint: disable=missing-docstring, line-too-long
 import sys
 from os import path
+# $DELETE_BEGIN
 import csv
 import requests
 from bs4 import BeautifulSoup
@@ -38,6 +39,7 @@ def scrape_from_internet(ingredient, start=1):
         SEARCH_URL,
         params={'search[query]': ingredient, 'page': start}
         )
+
     if response.history:
         return None
 
